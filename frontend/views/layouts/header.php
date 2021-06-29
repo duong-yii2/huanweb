@@ -76,7 +76,7 @@ foreach ( Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId()) as $k
                                     <span class="icon-toggle-menu hidden-md"></span>
                                 </div>
                             </li>
-                            <li class="nav-item in_development">
+                            <li class="nav-item">
                                 <div class="d-flex flex-ai-center">
                                     <a class="nav-link change-images" href="#">
                                         <span class="text">Hướng dẫn</span>
@@ -90,7 +90,7 @@ foreach ( Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId()) as $k
                                     <span class="text">Link vào kubet- ku casino</span>
                                 </a>
                             </li>
-                            <li class="nav-item in_development">
+                            <li class="nav-item">
                                 <div class="d-flex flex-ai-center">
                                     <a class="nav-link change-images" href="#">
                                         <span class="text">Sổ xố</span>
@@ -98,20 +98,20 @@ foreach ( Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId()) as $k
                                 </div>
                             </li>
 
-                            <li class="nav-item nav-item-blog <?= Yii::$app->controller->id == 'blog' ? 'active' : null ?>">
-                                <a class="nav-link change-images <?= Yii::$app->controller->id == 'blog' ? 'active' : null ?>" href="<?= Url::toRoute(['blog/index']); ?>">
+                            <li class="nav-item nav-item-blog ">
+                                <a class="nav-link change-images" href="/">
                                     <span class="text">Thể thao</span>
                                 </a>
                                 
                             </li>
-                            <li class="nav-item nav-item-blog <?= Yii::$app->controller->id == 'blog' ? 'active' : null ?>">
-                                <a class="nav-link change-images <?= Yii::$app->controller->id == 'blog' ? 'active' : null ?>" href="<?= Url::toRoute(['blog/index']); ?>">
+                            <li class="nav-item nav-item-blog ">
+                                <a class="nav-link change-images" href="/">
                                     <span class="text">Ku Casino</span>
                                 </a>
                                 
                             </li>
-                            <li class="nav-item nav-item-blog <?= Yii::$app->controller->id == 'blog' ? 'active' : null ?>">
-                                <a class="nav-link change-images <?= Yii::$app->controller->id == 'blog' ? 'active' : null ?>" href="<?= Url::toRoute(['blog/index']); ?>">
+                            <li class="nav-item nav-item-blog ">
+                                <a class="nav-link change-images" href="/">
                                     <span class="text">Sổ xố ưu đãi</span>
                                 </a>
                             </li>
