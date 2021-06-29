@@ -1,65 +1,85 @@
 <?php
-/**
- * @var yii\web\View $this
- */
-$this->title = Yii::$app->name;
+/* @var $this yii\web\View */
+//$this->title = Yii::$app->name;
+use common\models\Article;
+use common\models\ArticleLike;
+use frontend\components\LikeArticleWidget;
+use yii\helpers\Url;
+use common\models\About;
+use kartik\select2\Select2;
+use frontend\components\DropdownCheckboxWidget;
+use frontend\components\SelectMinMaxWidget;
+use frontend\components\TagSearchWidget;
+use common\models\Projects;
+use common\models\Category;
+use common\models\Banner;
+use common\models\ManagerMaterial;
+use yii\web\View;
+use backend\helpers\AcpHelper;
+// $this->context->arrStyleCate = array();
+$categoryBlog['all'] = 'Tất cả';
+$indexUrl = \yii\helpers\Url::toRoute('art-gallery/index', 'https');
+$this->registerJs("var url =  new URL(window.location.href)", View::POS_HEAD, 'url');
 ?>
-<div class="site-index">
-    <div class="container">
-        <?php echo \common\widgets\DbCarousel::widget([
-            'key' => 'index',
-            'assetManager' => Yii::$app->getAssetManager(),
-            'options' => [
-                'class' => 'slide', // enables slide effect
-            ],
-        ]) ?>
 
-        <div class="jumbotron">
-            <h1>Congratulations!</h1>
-
-            <p class="lead">You have successfully created your Yii-powered application.</p>
-
-            <?php echo \common\widgets\DbMenu::widget([
-                'key'=>'frontend-index',
-                'options'=>[
-                    'tag'=>'p'
-                ]
-            ]) ?>
-
+<div class="main-page">
+    <div class="box-slide">
+            <div class="swiper-index-slide">
+                <div class="swiper-wrapper">
+                <?php if(!empty($defaultBanner) && $defaultBanner != NULL):?> 
+                    <?php foreach($defaultBanner as $key => $banner): ?>
+                    <div class="swiper-slide">
+                        <?php if($banner->use_contructor == Banner::USE_CONTRUCTOR):?>
+                            <div class="item-carousel item-banner item-banner-form item-banner-1 d-flex swiper-lazy" data-background="<?=$banner->getImageBanner($banner->contructor_id)?>" style="">
+                        <?php else: ?>
+                            <div class="item-carousel item-banner item-banner-form item-banner-1 d-flex swiper-lazy" data-background="<?=$banner->getImageBanner()?>" style="">
+                        <?php endif;?>
+                            <div class="main-slider-banner container">
+                                <h2 class="title color-white text-center"><?=$banner->title?></h2>
+                                <p class="text"><?=$banner->content?></p>
+                                <?php if($banner->button != NULL && !empty($banner->button)): ?>
+                                    <div class="box-info-filter" style="display: flex;justify-content: center;">
+                                        <div class="box-filter-1 flex mt-20 box-list-filter filter-banner-index search_artgallery_div" id="search_artgallery_div" style="justify-content: center;">
+                                            <?php foreach ($banner->button as $key => $button) :?>
+                                                    <?php if($button != Banner::LABEL_SEARCH_TYPE_BUTTON):?>
+                                                        <?php if (Yii::$app->user->isGuest): ?>
+                                                        <?= Banner::renderButton($button) ?>
+                                                        <?php else : ?>
+                                                            <?php if($button != Banner::LABEL_REGISTRATION):?>
+                                                                <?= Banner::renderButton($button) ?>
+                                                            <?php endif;?>
+                                                        <?php endif;?>
+                                                    <?php else:?>
+                                                        <div class="form-group" style="width: max-content!important;min-width: unset!important;margin-right: 0px;margin-bottom: 0px;">
+                                                            <?php 
+                                                                $url_link_search = '';
+                                                                if($banner->url_search_button){
+                                                                    $url_link_search =  $banner->url_search_button;
+                                                                }
+                                                            ?>
+                                                            <?= Banner::renderButton($button,$url_link_search) ?>
+                                                        </div>
+                                                    <?php endif;?>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <?php if($banner->use_contructor == Banner::USE_CONTRUCTOR):?>
+                            <div class="nameContructor font-italic"><span>Ảnh: <?php echo Banner::getNameContructor($banner->contructor_id)?></span></div>
+                            <?php endif;?>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next swiper-pagination-white color-white"></div>
+                <div class="swiper-button-prev swiper-pagination-white color-white"></div>
+                <!-- <div class="swiper-pagination swiper-pagination-white"></div> -->
+                <?php else: ?>
+                    <div class="swiper-slide">
+                        <div class="item-carousel item-banner item-banner-form item-banner-1 d-flex lazy" data-src="https://agohomestyle.com/images/Banner_home_01.jpg" style="">
+                    </div>
+                <?php endif ?>
+            </div>
         </div>
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
-</div>

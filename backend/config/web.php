@@ -10,7 +10,6 @@ $config = [
         'request' => [
             'enableCookieValidation' => false,
             'enableCsrfValidation' => false,
-            'baseUrl' => env('BACKEND_BASE_URL'),
         ],
         'user' => [
             'class' => yii\web\User::class,
