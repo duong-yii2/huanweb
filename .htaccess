@@ -1,0 +1,28 @@
+RewriteEngine On
+# deal with admincp first
+RewriteCond %{REQUEST_URI} ^/(admincp)
+RewriteRule ^admincp/assets/(.*)$ backend/web/assets/$1 [L]
+RewriteRule ^admincp/css/(.*)$ backend/web/css/$1 [L]
+RewriteRule ^admincp/images/(.*)$ backend/web/images/$1 [L]
+RewriteRule ^admincp/js/(.*)$ backend/web/js/$1 [L]
+RewriteRule ^admincp/pluginckeditor/(.*)$ backend/web/pluginckeditor/$1 [L]
+RewriteRule ^admincp/filemanager/(.*)$ backend/web/filemanager/$1 [L]
+RewriteCond %{REQUEST_URI} !^/backend/web/(assets|css|images|js)/
+RewriteCond %{REQUEST_URI} ^/(admincp)
+RewriteRule ^.*$ backend/web/index.php [L]
+RewriteCond %{REQUEST_URI} ^/(assets|css|images|js|webfonts|scss|imagecache|upload|pluginckeditor|filemanager)
+RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
+RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
+RewriteRule ^images/(.*)$ frontend/web/images/$1 [L]
+RewriteRule ^webfonts/(.*)$ frontend/web/webfonts/$1 [L]
+RewriteRule ^js/(.*)$ frontend/web/js/$1 [L]
+RewriteRule ^scss/(.*)$ frontend/web/scss/$1 [L]
+RewriteRule ^imagecache/(.*)$ storage/web/source/$1 [L]
+RewriteRule ^upload/(.*)$ upload/$1 [L]
+RewriteCond %{REQUEST_URI} /(uploads)
+RewriteRule ^uploads/(.*)$ uploads/$1 [L]
+RewriteCond %{REQUEST_URI} !^/(frontend|backend)/web/(assets|css|images|js|webfonts|scss|imagecache|upload|pluginckeditor|filemanager)/
+RewriteCond %{REQUEST_URI} !index.php
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ frontend/web/index.php
