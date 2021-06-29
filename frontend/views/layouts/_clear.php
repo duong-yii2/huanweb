@@ -19,17 +19,7 @@ use yii\helpers\Url;
     <?php echo Html::csrfMetaTags() ?>
 
     <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => '/images/favicon.png']) ?>
-    <script src="/js/jquery-1.10.2.min.js"></script>
-
-<!--    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/all.min.css">
-    <link rel="stylesheet" href="/css/fontawesome.min.css">
-    <link rel="stylesheet" href="/css/light.css">
-    <link rel="stylesheet" href="/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/custom.css">-->
+    <!-- <script src="/js/jquery-1.10.2.min.js"></script> -->
     <script>
         var mainajaxurl = '<?=Url::to(['site/mainajax'], true)?>';
     </script>

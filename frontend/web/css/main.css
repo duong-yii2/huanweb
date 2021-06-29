@@ -6228,7 +6228,7 @@ footer .right-content-footer {
 
 /* line 473, ../scss/pages/_home.scss */
 .box-slide .item-banner {
-  min-height: 625px;
+  min-height: 315px;
   height: auto;
   background-size: cover;
   padding-top: 170px;
@@ -6263,7 +6263,7 @@ footer .right-content-footer {
   top: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: rgba(0, 0, 0, 0.7); */
 }
 
 /* line 501, ../scss/pages/_home.scss */

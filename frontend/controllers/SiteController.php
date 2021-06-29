@@ -12,6 +12,10 @@ use yii\filters\PageCache;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\Response;
+use common\models\Article;
+use common\models\ArticleCategory;
+use common\models\Information;
+use yii\bootstrap4\ActiveForm;
 
 /**
  * Site controller
@@ -119,5 +123,49 @@ class SiteController extends Controller
         }
 
         return $content;
+    }
+
+    // public function actionGetInformation(){
+    //     Yii::$app->response->format = Response::FORMAT_JSON;
+    //     var_dump(Yii::$app->request->post());
+    //     die();
+    // }
+    public function actionValidateRegister()
+    {
+        $model = new Information();
+        $request = \Yii::$app->getRequest();
+        if ($request->isPost && $model->load($request->post())) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+    }
+
+    public function actionRegister()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if (Yii::$app->request->post()) {
+            $model = new Information();
+            $model->phone_number = Yii::$app->request->post()['phone_number'];
+            $model->email = Yii::$app->request->post()['email'];
+            if ($model->save()) {
+                    return [
+                        'status' => 200,
+                        'code' => 0,
+                        'message' => 'Đăng ký thành công'
+                    ];
+            } else {
+                return [
+                    'status' => 400,
+                    'code' => -1,
+                    'message' => $model->getErrors()
+                ];
+            }
+        } else {
+            return [
+                'status' => 400,
+                'code' => -1,
+                'message' => $model->getErrors()
+            ];
+        }
     }
 }

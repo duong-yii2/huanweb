@@ -233,7 +233,7 @@ $logEntries[] = [
                             'icon' => FAS::icon('newspaper', ['class' => ['nav-icon']]),
                             'options' => ['class' => 'nav-item has-treeview'],
                             'active' => 'content' === Yii::$app->controller->module->id &&
-                                ('article' === Yii::$app->controller->id || 'category' === Yii::$app->controller->id || 'banner' === Yii::$app->controller->id ),
+                                ('article' === Yii::$app->controller->id || 'category' === Yii::$app->controller->id || 'banner' === Yii::$app->controller->id || 'information' === Yii::$app->controller->id ),
                             'items' => [
                                 [
                                     'label' => Yii::t('backend', 'Articles'),
@@ -248,10 +248,16 @@ $logEntries[] = [
                                     'active' => Yii::$app->controller->id === 'category',
                                 ],
                                 [
-                                    'label' => Yii::t('backend', 'Banner'),
+                                    'label' => Yii::t('backend', 'Ảnh bìa'),
                                     'url' => ['/content/banner/index'],
                                     'icon' => FAR::icon('circle', ['class' => ['nav-icon']]),
                                     'active' => Yii::$app->controller->id === 'banner',
+                                ],
+                                [
+                                    'label' => Yii::t('backend', 'Thông tin người truy cập'),
+                                    'url' => ['/content/information/index'],
+                                    'icon' => FAR::icon('circle', ['class' => ['nav-icon']]),
+                                    'active' => Yii::$app->controller->id === 'information',
                                 ],
                             ],
                         ],

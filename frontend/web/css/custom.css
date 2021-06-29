@@ -4203,7 +4203,7 @@ a.filter_AG {
 }
 .get-border-text:hover {
     padding: 8px 15px;
-    background-color: #073e2e;
+    background-color: #d26e4b;
     border-radius: 5px;
     color: #fff !important;
     border: unset;
@@ -4212,8 +4212,26 @@ a.filter_AG {
     padding: 8px 15px;
     border: 1px solid #fff;
     border-radius: 5px;
+    background-color: #d26e4b;
 }
 .get-border-text:focus {
+    color: #fff !important;
+}
+
+.get-border-text-2:hover {
+    padding: 8px 15px;
+    background-color: #7a9c59 !important;
+    border-radius: 5px;
+    color: #fff !important;
+    border: unset;
+}
+.get-border-text-2 {
+    padding: 8px 15px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: #7a9c59;
+}
+.get-border-text-2:focus {
     color: #fff !important;
 }
 .agopro-card-item .card-body {

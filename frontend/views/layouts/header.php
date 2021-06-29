@@ -38,95 +38,12 @@ foreach ( Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId()) as $k
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="hidden-sm dropdown-header-mobile flex flex-jc-between flex-ai-center" id="div-login">
-                        <div class="box-contractors box-default-header">
-                            <a href="#" class="box-text flex flex-ai-center">
-                                <?php if (Yii::$app->user->isGuest): ?>
-                                <!-- <div class="icon-notification box-icon-header">
-                                    <span class="icon-default icon-user-plus"></span>
-                                </div>
-                                <span class="text in_development">Tham gia mạng lưới chuyên gia AGOpro</span> -->
-                                <?php endif; ?>
-                            </a>
-                        </div>
-                        <?php if (Yii::$app->user->isGuest): ?>
                             <div class="box-join-header box-default-header">
-                                <a class="txt-name get-border-text" href="#" data-toggle="modal" data-target="#register">Đăng nhập</a></li>
+                                <a class="txt-name get-border-text" href="#" data-toggle="modal" data-target="#modalUserInfo">Đăng nhập</a></li>
                             </div>
                             <div class="box-user-header dropdown box-default-header">
-
-                                <a class="txt-name get-border-text-2" href="#" data-toggle="modal" data-target="#login">Đăng ký</a></li>
+                                <a class="txt-name get-border-text-2" href="#" data-toggle="modal" data-target="#modalUserInfo">Đăng ký</a></li>
                             </div>
-                            <!--box-project-header-->
-                        <?php else: ?>
-                            <div class="box-premium-header box-default-header">
-                                <span class="in_development">Dùng thử Premium 1 tháng</span>
-                            </div>
-                            <div class="box-notification-header dropdown box-default-header">
-                                <div class="box-text dropdown-toggle flex flex-ai-center" id="dropdownNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <div class="icon-notification box-icon-header">
-                                        <span class="icon-default icon-notification-xs"></span>
-                                        <span class="badge"></span>
-                                    </div>
-                                    <div class="icon-notification box-icon-header">
-                                        <span class="fas fa-shopping-cart"></span>
-                                        <span class="badge"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--box-notification-header-->
-                            <div class="box-project-header dropdown box-default-header">
-                                <div class="box-text dropdown-toggle flex flex-ai-center box-text-move-agopro" id="dropdownProject" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="text in_development">Chuyển tới AGOpro</span>
-                                </div>
-                            </div>
-                            <!--box-project-header-->
-
-                            <div class="box-user-header dropdown box-default-header">
-                                <div class="box-text dropdown-toggle flex flex-ai-center" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <div class="box-icon-header">
-                                        <div class="images-avatar">
-
-
-                                            <img data-src="<?= $modelProfile->getAvarUser(); ?>" alt="" width="" height="" src="images/loadingimg.png" class="lazy">
-
-                                        </div>
-                                    </div>
-                                    <span class="text"><i class="fas fa-chevron-down"></i></span>
-                                </div>
-                                <div class="dropdown-default dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUser">
-                                    <div class="main-user">
-                                    <?php 
-                                    if($nameRole == \common\models\User::ROLE_CONTRUCTOR){
-                                        $url = Url::toRoute(['sign-in/profile-view-user-contructor','slug' => $nameCurrentUser]);
-                                    } elseif ($nameRole == \common\models\User::ROLE_BASIC) {
-                                        $url = Url::toRoute(['sign-in/profile-view-basic-user','slug' => $nameCurrentUser]);
-                                    } else {
-                                        $url = '';
-                                    }
-                                    ?>
-                                        <a href="<?=$url?>" class="info-user flex flex-ai-center">
-                                                <span class="images">
-                                                <img data-src="<?= $modelProfile->getAvarUser(); ?>" alt="" width="" height="" src="images/loadingimg.png" class="lazy">
-                                                </span>
-                                            <div class="content">
-                                                <h4 class="name">Agohomestyle</h4>
-                                                <p class="txt-name"><?php echo Yii::$app->user->identity->username ?></p>
-                                            </div>
-                                        </a>
-
-                                        <ul class="list-active-user">
-                                            <?php if($nameRole == \common\models\User::ROLE_CONTRUCTOR): ?>
-                                                <li><?= Html::a(Yii::t('frontend', 'Chỉnh sửa thông tin'), ['sign-in/profile-edit-user-contructor','slug' => $nameCurrentUser]) ?></li>
-                                            <?php elseif($nameRole == \common\models\User::ROLE_BASIC): ?>
-                                                <li><?= Html::a(Yii::t('frontend', 'Chỉnh sửa thông tin'), ['sign-in/profile-edit-basic-user','slug' => $nameCurrentUser]) ?></li>
-                                            <?php endif; ?>
-                                            <li><?= Html::a(Yii::t('frontend', 'Đăng xuất'), ['site/logout'], ['data-method' => 'post']) ?></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--box-project-header-->
-                        <?php endif ?>
                     </div>
                 </div>
             </nav>
@@ -220,21 +137,3 @@ foreach ( Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId()) as $k
         </div>
     </div>
 </header>
-
-<?php
-
-$js = <<<JS
-
-$(document).ready(function(){
-    let allListChild = $('.nav-item-blog').find('.list-menu-child');
-    allListChild.each((index,item) => {
-        if(!$.trim($(item).html()).length == true) {
-            $(item).parents('.child').remove();
-        }
-    })
-})
-
-JS;
-
-$this->registerJs($js)
-?>
